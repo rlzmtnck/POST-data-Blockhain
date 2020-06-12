@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		</head>
+	<body>
+		<form action="">
+			<label for="m">Nomor Polisi:</label><br>
+			<input type="text" id="m" name="m" value=""><br>
+			<label for="n">Last name:</label><br>
+			<input type="text" id="n" name="n" value=""><br><br>
+			<input type="submit" value="Submit">
+		  </form> 
+		
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script>
+			$(function () {
+				var socket = io();
+					$('form').submit(function(e){
+					e.preventDefault(); // prevents page reloading
+					socket.emit('vote_input', $('#m').val());
+					socket.emit('vote_input', $('#n').val());
+					$('#m').val('');
+					return false;
+					});
+			});
+		</script>
+	</body>
+</html> 
