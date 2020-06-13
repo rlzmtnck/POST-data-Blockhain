@@ -3,7 +3,8 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var io_client = require('socket.io-client');
 var express = require("express");
-
+const fs = require('fs');
+const blockJson = require('./data.json');
 //ganti dengan ipv4 server (contoh : 'http://{ipv4}:{port}/')
 var socket_node = io_client.connect('http://192.168.1.9:3001/', {reconnect: true});
 
@@ -166,10 +167,16 @@ io.on('connection', function(socket){
 				blockchain.addBlock(block);
 				// blockchain.showLatestBlock();
 				blockchain.showBlockchain();
+
+				let newBlock = blockJson;
+				newBlock.push(block);
 				
+			
 				var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(block), 'kunci rahasia').toString();
 				io.emit('node_comm', ciphertext);
-	
+				var save = fs.writeFileSync('data.json', JSON.stringify(newBlock,0,2));
+				io.emit('vote_input', save);
+
 				previous_hash = hash;
 				index = index + 1;
 			}
