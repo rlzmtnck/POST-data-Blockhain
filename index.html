@@ -5,10 +5,28 @@
 		</head>
 	<body>
 		<form action="">
-			<label for="m">Nomor Polisi:</label><br>
-			<input type="text" id="m" name="m" value=""><br>
-			<label for="n">Last name:</label><br>
-			<input type="text" id="n" name="n" value=""><br><br>
+			<label for="a">Nomor Registrasi:</label><br>
+			<input type="text" id="a" name="a" value=""><br>
+			<label for="b">Merk:</label><br>
+			<input type="text" id="b" name="b" value=""><br>
+			<label for="c">Model:</label><br>
+			<input type="text" id="c" name="c" value=""><br>
+			<label for="d">Tahun Pembuatan:</label><br>
+			<input type="text" id="d" name="d" value=""><br><br>
+			<label for="e">Isi Silinder:</label><br>
+			<input type="text" id="e" name="e" value=""><br><br>
+			<label for="f">Warna:</label><br>
+			<input type="text" id="f" name="f" value=""><br><br>
+			<label for="g">Nomor Rangka:</label><br>
+			<input type="text" id="g" name="g" value=""><br><br>
+			<label for="h">Nomor Mesin:</label><br>
+			<input type="text" id="h" name="h" value=""><br><br>
+			<label for="i">Bahan Bakar:</label><br>
+			<input type="text" id="i" name="i" value=""><br><br>
+			<label for="j">Jumlah Sumbu:</label><br>
+			<input type="text" id="j" name="j" value=""><br><br>
+			<label for="k">Jumlah Roda:</label><br>
+			<input type="text" id="k" name="k" value=""><br><br>
 			<input type="submit" value="Submit">
 		  </form> 
 		
@@ -19,9 +37,18 @@
 				var socket = io();
 					$('form').submit(function(e){
 					e.preventDefault(); // prevents page reloading
-					socket.emit('vote_input', $('#m').val());
-					socket.emit('vote_input', $('#n').val());
-					$('#m').val('');
+					socket.emit('vote_input', $('#a').val() + $('#b').val() + $('#c').val()+ $('#d').val()+ $('#e').val()+ $('#f').val()+ $('#g').val()+ $('#h').val()+ $('#i').val()+ $('#j').val()+ $('#k').val());
+					$('#a').val('');
+					$('#b').val('');
+					$('#c').val('');
+					$('#d').val('');
+					$('#e').val('');
+					$('#f').val('');
+					$('#g').val('');
+					$('#h').val('');
+					$('#i').val('');
+					$('#j').val('');
+					$('#k').val('');
 					return false;
 					});
 			});
